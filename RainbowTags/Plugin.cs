@@ -16,6 +16,7 @@ namespace RainbowTags
         public List<string> PlayersRainbowTags { get; set; } = new List<string>();
         public CoroutineHandle _corotine;
         public static Plugin Instance;
+        public Dictionary<string, string[]> CustomColors { get; set; } = new Dictionary<string, string[]>();
 
         public override void OnEnabled()
         {
@@ -57,6 +58,7 @@ namespace RainbowTags
 
                 PlayersRainbowTags.Remove(ev.Player.UserId);
                 PlayersNotRainbowTags?.Remove(ev.Player.UserId);
+                CustomColors?.Remove(ev.Player.UserId);
 
                 if (!PlayersRainbowTags.IsEmpty()) return;
 
@@ -77,6 +79,11 @@ namespace RainbowTags
                 {
                     if (!PlayersNotRainbowTags.Contains(uplayer)) 
                     {
+                        if (CustomColors.ContainsKey(uplayer)) 
+                        {
+                            Player.Get(uplayer).RankColor = CustomColors[uplayer][posCurrentColor];
+                            Log.Debug($"{Player.Get(uplayer).Nickname} get color {CustomColors[uplayer][posCurrentColor]}");
+                        }
                         Player.Get(uplayer).RankColor = Config.Colors[posCurrentColor];
                         Log.Debug($"{Player.Get(uplayer).Nickname} get color {Config.Colors[posCurrentColor]}");
                     }
