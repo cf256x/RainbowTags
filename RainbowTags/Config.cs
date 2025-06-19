@@ -11,8 +11,7 @@ namespace RainbowTags
     {
         public bool IsEnabled { get; set; } = true;
         public bool Debug { get; set; } = false;
-
-        public string GroupWithRainbowTag { get; set; } = "owner";
+        public List<string> GroupWithRainbowTag { get; set; } = new List<string> { "rbpref" };
         public float Delay { get; set; } = 0.25f;
         public string[] Colors { get; set; } = 
         {

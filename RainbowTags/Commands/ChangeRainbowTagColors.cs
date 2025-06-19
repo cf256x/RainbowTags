@@ -20,7 +20,7 @@ namespace RainbowTags
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player = Player.Get(sender);
-            if (Plugin.Instance.Config.GroupWithRainbowTag != player.GroupName)
+            if (!Plugin.Instance.Config.GroupWithRainbowTag.Contains(player.GroupName))
             {
                 response = "Ваша группа не является разрешенной";
                 return false;

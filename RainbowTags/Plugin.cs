@@ -40,7 +40,7 @@ namespace RainbowTags
 
         private void OnVerified(VerifiedEventArgs ev)
         {
-            if (ev.Player.GroupName == Config.GroupWithRainbowTag) 
+            if (Config.GroupWithRainbowTag.Contains(ev.Player.GroupName)) 
             {
                 Log.Debug($"{ev.Player.Nickname} has been added to PlayersRainbowTags");
                 PlayersRainbowTags.Add(ev.Player.UserId);
@@ -52,7 +52,7 @@ namespace RainbowTags
         }
         private void OnDestroying(DestroyingEventArgs ev)
         {
-            if (ev.Player.GroupName == Config.GroupWithRainbowTag)
+            if (Config.GroupWithRainbowTag.Contains(ev.Player.GroupName))
             {
                 Log.Debug($"{ev.Player.Nickname} has been deleted from PlayersRainbowTags ?and PlayersNotRainbowTags");
 
